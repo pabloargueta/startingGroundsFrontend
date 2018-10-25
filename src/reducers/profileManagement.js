@@ -6,9 +6,11 @@ export default function profileApp(state = {
   compatibleProfiles: [],
   selectedUsers: [],
   selectedProfile: null,
+  bodyContent: 'TODAYS COMPATIBLE PROFILES'
 }, action) {
   switch (action.type) {
     case 'LOGIN':
+      localStorage.token = action.payload
       return {
         ...state, token: action.payload
       }
@@ -28,7 +30,20 @@ export default function profileApp(state = {
         ...state, horoscope: action.payload
       }
 
+    case 'SETCOMPATIBLEUSERS':
+      return {
+        ...state, compatibleProfiles: action.payload
+      }
 
+    case 'LOGOUT':
+      localStorage.clear()
+      return {
+        ...state, token: null
+      }
+    case 'SETBODYCONTENT':
+      return {
+        ...state, bodyContent: action.payload
+      }
 
     default:
       return state;

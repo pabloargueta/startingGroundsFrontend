@@ -1,37 +1,45 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 class Horoscope extends Component {
-
-  // componentDidMount() {
-  //   this.getHoroscope()
-  // }
-  // componentDidUpdate() {
-  //   this.getHoroscope()
-  // }
-
-  // getHoroscope() {
-  //   if (this.props.user) {
-
-  //     fetch(`https://aztro.sameerkumar.website/?sign=${this.props.user.horoscope}&day=today`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'Application/JSON'
-  //       }
-  //     })
-  //       .then(resp => resp.json())
-  //       .then(horoscopeData => this.props.setHoroscope(horoscopeData))
-  //   }
-  // }
 
 
   render() {
     if (this.props.horoscope) {
       return (
         <div>
-          <h1>We are in the Horoscope Component</h1>
-          <h2>Date: {this.props.horoscope.current_date}</h2>
-          <p>{this.props.horoscope.description}</p>
+          <Typography align='center' variant='h5'> {this.props.horoscope.current_date}</Typography>
+          <br />
+          <div >
+            <Grid container spacing={12} align='center'>
+              <Grid item xs={4}>
+                <Typography>Lucky Color:     <strong>{this.props.horoscope.color}</strong></Typography>
+              </Grid>
+
+              <Grid item xs={4}>
+                <Typography>Lucky Number:     <strong>
+                  {this.props.horoscope.lucky_number}
+                </strong></Typography>
+              </Grid>
+
+              <Grid item xs={4}>
+                <Typography>Lucky Time:
+                  <strong>
+                    {this.props.horoscope.lucky_time}
+                  </strong></Typography>
+              </Grid>
+
+            </Grid>
+          </div>
+          <br />
+          <div>
+            <Typography align='center' variant='h5'>
+              {this.props.horoscope.description}
+            </Typography>
+          </div>
+          <br />
         </div>
       )
     } else {

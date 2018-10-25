@@ -4,44 +4,45 @@ import { connect } from 'react-redux'
 class Profile extends Component {
 
 
-  componentDidMount() {
-    this.getProfile()
-    // this.getHoroscope()
+  // componentDidMount() {
+  //   this.getProfile()
+  //   // this.getHoroscope()
 
-  }
+  // }
 
-  componentDidUpdate() {
-    this.getHoroscope()
-  }
+  // componentDidUpdate() {
+  //   this.getHoroscope()
+  // }
 
-  getHoroscope() {
-    if (this.props.user) {
+  // getHoroscope() {
 
-      fetch(`https://aztro.sameerkumar.website/?sign=${this.props.user.horoscope}&day=today`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'Application/JSON'
-        }
-      })
-        .then(resp => resp.json())
-        .then(horoscopeData => this.props.setHoroscope(horoscopeData))
-    }
-  }
+  //   if (this.props.user && !this.props.horoscope) {
 
-  getProfile() {
-    // debugger
-    fetch('http://localhost:3000/profile', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${this.props.token}`
-      }
-    })
-      .then(resp => resp.json())
-      .then(data => this.props.setUser(data))
+  //     fetch(`https://aztro.sameerkumar.website/?sign=${this.props.user.horoscope}&day=today`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'Application/JSON'
+  //       }
+  //     })
+  //       .then(resp => resp.json())
+  //       .then(horoscopeData => this.props.setHoroscope(horoscopeData))
+  //   }
+  // }
 
-    // this.getHoroscope()
+  // getProfile() {
+  //   // debugger
+  //   fetch('http://localhost:3000/profile', {
+  //     method: 'GET',
+  //     headers: {
+  //       Authorization: `Bearer ${this.props.token}`
+  //     }
+  //   })
+  //     .then(resp => resp.json())
+  //     .then(data => this.props.setUser(data))
 
-  }
+  // this.getHoroscope()
+
+  // }
 
   // addImage(e) {
   //   e.preventDefault()
@@ -75,22 +76,21 @@ class Profile extends Component {
 
 function mapStateToProps(state) {
   return {
-    token: state.token,
     user: state.user,
   }
 }
 
 
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setUser: (user) => {
-      dispatch({ type: 'SETUSER', payload: user })
-    },
-    setHoroscope: (horoscopeData) => {
-      dispatch({ type: 'SETHOROSCOPE', payload: horoscopeData })
-    }
-  }
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     setUser: (user) => {
+//       dispatch({ type: 'SETUSER', payload: user })
+//     },
+//     setHoroscope: (horoscopeData) => {
+//       dispatch({ type: 'SETHOROSCOPE', payload: horoscopeData })
+//     }
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default connect(mapStateToProps)(Profile)
